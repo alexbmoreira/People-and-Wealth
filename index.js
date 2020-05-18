@@ -11,6 +11,8 @@ getRandomUser();
 getRandomUser();
 getRandomUser();
 
+add_btn.addEventListener("click", getRandomUser);
+
 // Get random user and give them money
 async function getRandomUser()
 {
@@ -46,8 +48,13 @@ function updateDOM(provided = people)
     {
         const person_div = document.createElement("div");
         person_div.classList.add("person");
-        person_div.innerHTML = `<strong>${person.name}</strong> ${person.wealth}`;
+        person_div.innerHTML = `<strong>${person.name}</strong> $${formatWealth(person.wealth)}`;
 
         main.appendChild(person_div);
     });
+}
+
+function formatWealth(wealth)
+{
+    return (+wealth).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
 }
