@@ -12,6 +12,16 @@ getRandomUser();
 getRandomUser();
 
 add_btn.addEventListener("click", getRandomUser);
+double_btn.addEventListener("click", function (e)
+{
+    people = people.map(person =>
+    {
+        return { ...person, wealth: person.wealth * 2 };
+    });
+
+    console.log(people);
+    updateDOM();
+});
 
 // Get random user and give them money
 async function getRandomUser()
