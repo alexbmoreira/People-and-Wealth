@@ -1,4 +1,4 @@
-const main = document.getElementById("main");
+const total_div = document.getElementById("total");
 const add_btn = document.getElementById("add");
 const double_btn = document.getElementById("double");
 const millionaires_btn = document.getElementById("millionaires");
@@ -19,12 +19,11 @@ double_btn.addEventListener("click", function (e)
         return { ...person, wealth: person.wealth * 2 };
     });
 
-    console.log(people);
     updateDOM();
 });
 millionaires_btn.addEventListener("click", function (e)
 {
-    people - people.filter(person => person.wealth > 1000000);
+    people = people.filter(person => person.wealth > 1000000);
 
     updateDOM();
 });
@@ -37,8 +36,6 @@ sort_btn.addEventListener("click", function (e)
 calc_btn.addEventListener("click", function (e)
 {
     const wealth = people.reduce((w, person) => (w += +person.wealth), 0);
-
-    console.log(wealth);
 
     const total = document.createElement('div');
     total.innerHTML = `<h3>Total Wealth: <strong>${formatWealth(wealth)}</strong></h3>`;
@@ -57,7 +54,6 @@ async function getRandomUser()
     const new_user = {
         name: `${user.name.first} ${user.name.last}`,
         wealth: (Math.random() * 1000000).toFixed(2)
-
     }
 
     addPerson(new_user);
@@ -75,7 +71,7 @@ function addPerson(object)
 function updateDOM(provided = people)
 {
     // Clear main
-    main.innerHTML = "<h2><strong>Person</strong> Wealth</h2>";
+    main.innerHTML = "<h2><strong>Person</strong> Wealth</h2>"
 
     provided.forEach(person =>
     {
