@@ -22,6 +22,29 @@ double_btn.addEventListener("click", function (e)
     console.log(people);
     updateDOM();
 });
+millionaires_btn.addEventListener("click", function (e)
+{
+    people - people.filter(person => person.wealth > 1000000);
+
+    updateDOM();
+});
+sort_btn.addEventListener("click", function (e)
+{
+    people.sort((a, b) => b.wealth - a.wealth);
+
+    updateDOM();
+});
+calc_btn.addEventListener("click", function (e)
+{
+    const wealth = people.reduce((w, person) => (w += +person.wealth), 0);
+
+    console.log(wealth);
+
+    const total = document.createElement('div');
+    total.innerHTML = `<h3>Total Wealth: <strong>${formatWealth(wealth)}</strong></h3>`;
+
+    main.appendChild(total);
+});
 
 // Get random user and give them money
 async function getRandomUser()
